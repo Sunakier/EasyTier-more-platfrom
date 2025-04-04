@@ -10,6 +10,10 @@ RUN mkdir -p /tmp/output; \
         ARTIFACT_ARCH="x86_64"; \
     elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
         ARTIFACT_ARCH="aarch64"; \
+    elif [ "$TARGETPLATFORM" = "linux/arm/v7" ]; then \
+        ARTIFACT_ARCH="armv7"; \
+    elif [ "$TARGETPLATFORM" = "linux/s390x" ]; then \
+        ARTIFACT_ARCH="s390x"; \
     else \
         echo "Unsupported architecture: $TARGETARCH"; \
         exit 1; \

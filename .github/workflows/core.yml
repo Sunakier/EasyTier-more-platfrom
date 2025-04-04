@@ -121,6 +121,10 @@ jobs:
             OS: ubuntu-22.04
             ARTIFACT_NAME: freebsd-13.2-x86_64
             BSD_VERSION: 13.2
+            
+          - TARGET: s390x-unknown-linux-musl
+            OS: ubuntu-22.04
+            ARTIFACT_NAME: linux-s390x
 
     runs-on: ${{ matrix.OS }}
     env:
