@@ -32,6 +32,9 @@ if [[ $OS =~ ^ubuntu.*$ ]]; then
     arm-unknown-linux-musleabi)
         MUSL_URI=arm-linux-musleabi
         ;;
+    s390x-unknown-linux-musl)
+        MUSL_URI=s390x-linux-musl
+        ;;
     esac
 
     if [ -n "$MUSL_URI" ]; then
@@ -49,7 +52,7 @@ rustup install 1.84
 rustup default 1.84
 
 # mips/mipsel cannot add target from rustup, need compile by ourselves
-if [[ $OS =~ ^ubuntu.*$ && $TARGET =~ ^mips.*$ ]]; then
+if [[ $OS =~ ^ubuntu.*$ && ($TARGET =~ ^mips.*$ || $TARGET =~ ^s390x.*$) ]]; then
     cd "$PWD/musl_gcc/${MUSL_URI}-cross/lib/gcc/${MUSL_URI}/11.2.1" || exit 255
     # for panic-abort
     cp libgcc_eh.a libunwind.a

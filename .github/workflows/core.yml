@@ -173,6 +173,8 @@ jobs:
           export KCP_SYS_EXTRA_HEADER_PATH=/usr/include/musl-cross
           if [[ $OS =~ ^ubuntu.*$ && $TARGET =~ ^mips.*$ ]]; then
             cargo +nightly build -r --verbose --target $TARGET -Z build-std=std,panic_abort --no-default-features --features mips --package=easytier
+          elif [[ $OS =~ ^ubuntu.*$ && $TARGET =~ ^s390x.*$ ]]; then
+            cargo +nightly build -r --verbose --target $TARGET -Z build-std=std,panic_abort --package=easytier
           else
             if [[ $OS =~ ^windows.*$ ]]; then
               SUFFIX=.exe
@@ -253,7 +255,7 @@ jobs:
 
           mv ./target/$TARGET/release/easytier-core"$SUFFIX" ./artifacts/objects/
           mv ./target/$TARGET/release/easytier-cli"$SUFFIX" ./artifacts/objects/
-          if [[ ! $TARGET =~ ^mips.*$ ]]; then
+          if [[ ! $TARGET =~ ^mips.*$ && ! $TARGET =~ ^s390x.*$ ]]; then
             mv ./target/$TARGET/release/easytier-web"$SUFFIX" ./artifacts/objects/
             mv ./target/$TARGET/release/easytier-web-embed"$SUFFIX" ./artifacts/objects/
           fi
