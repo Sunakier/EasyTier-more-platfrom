@@ -75,3 +75,16 @@ rustflags = [
     "-l",
     "atomic",
 ]
+
+[target.s390x-unknown-linux-musl]
+linker = "s390x-linux-musl-gcc"
+rustflags = [
+    "-C",
+    "target-feature=+crt-static",
+    "-L",
+    "./musl_gcc/s390x-linux-musl-cross/s390x-linux-musl/lib",
+    "-L",
+    "./musl_gcc/s390x-linux-musl-cross/lib/gcc/s390x-linux-musl/11.2.1",
+    "-l",
+    "atomic",
+]

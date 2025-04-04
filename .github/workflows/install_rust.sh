@@ -51,7 +51,7 @@ rustup set auto-self-update disable
 rustup install 1.84
 rustup default 1.84
 
-# mips/mipsel cannot add target from rustup, need compile by ourselves
+# mips/mipsel/s390x cannot add target from rustup, need compile by ourselves
 if [[ $OS =~ ^ubuntu.*$ && ($TARGET =~ ^mips.*$ || $TARGET =~ ^s390x.*$) ]]; then
     cd "$PWD/musl_gcc/${MUSL_URI}-cross/lib/gcc/${MUSL_URI}/11.2.1" || exit 255
     # for panic-abort
